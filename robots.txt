@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://topoptica26.github.io/top-optica/sitemap.xml
