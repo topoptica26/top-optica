@@ -11,12 +11,12 @@ window.SITE_CONFIG = {
   address: "כתובת תעודכן בקרוב",
 
   // טלפון לתצוגה + מספר לחיוג | Phone as displayed + dial number (digits, may start with +972)
-  phone: "05X-XXXXXXX",
-  phoneDial: "",                 // e.g. "+972501234567"  (empty = link scrolls to Contact)
+  phone: "050-6055531",
+  phoneDial: "+972506055531",                 // e.g. "+972501234567"  (empty = link scrolls to Contact)
 
   // וואטסאפ | WhatsApp: display text + international number WITHOUT "+" or leading 0
-  whatsappDisplay: "05X-XXXXXXX",
-  whatsappNumber: "",            // e.g. "972501234567"   (empty = link scrolls to Contact)
+  whatsappDisplay: "050-6055531",
+  whatsappNumber: "972506055531",            // e.g. "972501234567"   (empty = link scrolls to Contact)
   whatsappMessage: "שלום, אשמח לקבוע תור לבדיקת ראייה",
 
   // אימייל | Email (real)
