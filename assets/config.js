@@ -4,7 +4,6 @@
  *  Edit the values below and refresh the page. Every phone link,
  *  WhatsApp button, address, hours table and service card on the
  *  site is filled from this one object.
- *  ערכים שמתחילים ב-"05X" / "כתובת תעודכן בקרוב" הם ממלאי מקום (placeholders).
  * ===================================================================== */
 window.SITE_CONFIG = {
   // כתובת הקליניקה | Clinic address (shown in Contact)
@@ -49,5 +48,5 @@ window.SITE_CONFIG = {
     { icon: "pressure", title: "בדיקת לחץ תוך עיני",        text: "מדידת הלחץ בתוך העין כחלק משגרת בריאות העין, לאיתור מוקדם של שינויים והפניה לבירור במידת הצורך." },
     { icon: "topo",    title: "מיפוי קרנית",                text: "מיפוי מפורט של פני הקרנית, המסייע להתאמה מדויקת של עדשות מגע ולמעקב אחר מצב הקרנית." }
   ],
-  servicesArePlaceholder: true   // set to false to hide the "editable" badges on service cards
+  servicesArePlaceholder: false
 };
