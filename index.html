@@ -43,6 +43,7 @@
           <li><a href="#about">אודות</a></li>
           <li><a href="#services">שירותים</a></li>
           <li><a href="#why">למה אנחנו</a></li>
+          <li><a href="#clinic">הקליניקה</a></li>
           <li><a href="#contact">צור קשר</a></li>
         </ul>
         <a class="btn btn-gold btn-sm" data-href="tel" href="#contact">קביעת תור</a>
@@ -135,6 +136,39 @@
       </div>
     </section>
 
+    <!-- ===== CLINIC (photos + video tour) ===== -->
+    <section class="section clinic" id="clinic" aria-labelledby="clinic-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow dark">הקליניקה שלנו</p>
+          <h2 id="clinic-title">בואו להכיר <span class="gold-text">את הקליניקה</span></h2>
+          <p class="section-sub">חלל מואר ומזמין עם ציוד בדיקה ממוחשב ומתקדם – כדי שכל בדיקה תהיה מדויקת, נעימה ורגועה</p>
+        </div>
+        <div class="clinic-grid">
+          <figure class="clinic-video reveal">
+            <div class="phone-frame">
+              <video id="clinic-video" src="assets/clinic.mp4" poster="assets/clinic-poster.jpg" width="540" height="960" controls muted loop playsinline preload="metadata" aria-label="סרטון סיור בקליניקה של טופ אופטיקה"></video>
+            </div>
+            <figcaption>סיור קצר בקליניקה</figcaption>
+          </figure>
+          <div class="clinic-photos">
+            <button type="button" class="clinic-photo reveal" style="--d:120ms" data-full="assets/clinic-1.jpg" aria-label="הגדלת התמונה: חדר הבדיקות">
+              <img src="assets/clinic-1.jpg" alt="חדר הבדיקות בקליניקה – מכשירי בדיקה ממוחשבים ומסכים להצגת סריקות העין" width="1179" height="660" loading="lazy" decoding="async">
+              <span class="photo-cap">חדר הבדיקות</span>
+            </button>
+            <button type="button" class="clinic-photo reveal" style="--d:220ms" data-full="assets/clinic-2.jpg" aria-label="הגדלת התמונה: בדיקה ממוחשבת">
+              <img src="assets/clinic-2.jpg" alt="האופטומטריסטית מפעילה את מכשיר הבדיקה הממוחשב בחדר הבדיקות" width="1179" height="658" loading="lazy" decoding="async">
+              <span class="photo-cap">בדיקה ממוחשבת מתקדמת</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <dialog class="lightbox" id="lightbox" aria-label="תצוגת תמונה מוגדלת">
+        <button type="button" class="lightbox-close" aria-label="סגירה">×</button>
+        <img src="" alt="">
+      </dialog>
+    </section>
+
     <!-- ===== CONTACT (EDITABLE: all values come from assets/config.js) ===== -->
     <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="container">
@@ -187,7 +221,7 @@
         <div><strong>TOP OPTICA</strong><span><span>קליניקה לאופטומטריה</span> | <span lang="en" dir="ltr">Optometry Clinic</span></span></div>
       </div>
       <nav class="footer-nav" aria-label="ניווט תחתון">
-        <a href="#about">אודות</a><a href="#services">שירותים</a><a href="#why">למה אנחנו</a><a href="#contact">צור קשר</a>
+        <a href="#about">אודות</a><a href="#services">שירותים</a><a href="#why">למה אנחנו</a><a href="#clinic">הקליניקה</a><a href="#contact">צור קשר</a>
       </nav>
       <p class="footer-email"><a data-href="email" data-bind="email" href="mailto:Topoptica26@gmail.com" dir="ltr">Topoptica26@gmail.com</a></p>
       <div class="footer-social" id="footer-social"></div>
