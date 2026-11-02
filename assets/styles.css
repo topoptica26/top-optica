@@ -205,3 +205,6 @@ p{margin:0 0 1em}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+
+.waze-link{display:inline-flex;align-items:center;gap:.35em;margin-top:.5rem;padding:.4rem .9rem;border-radius:999px;background:linear-gradient(135deg,#e7c66b,#c99a2e);color:#4a1f23;font-weight:700;font-size:.9rem;text-decoration:none;box-shadow:0 4px 12px -4px rgba(0,0,0,.35)}
+.waze-link:hover{filter:brightness(1.07)}

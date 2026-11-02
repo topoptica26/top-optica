@@ -47,6 +47,8 @@
   }
 
   // ---- Map
+  var wz = $("#waze-link");
+  if (wz && C.wazeUrl) { wz.href = C.wazeUrl; wz.hidden = false; }
   if (C.mapEmbedUrl) {
     $("#map-box").innerHTML = '<iframe title="מפת הגעה לטופ אופטיקה" src="' + esc(C.mapEmbedUrl) + '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>';
   }

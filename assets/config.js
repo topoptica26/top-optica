@@ -8,7 +8,10 @@
  * ===================================================================== */
 window.SITE_CONFIG = {
   // כתובת הקליניקה | Clinic address (shown in Contact)
-  address: "כתובת תעודכן בקרוב",
+  address: "קניון טופ סימול, רחוב צה\"ל 4, קומה 21, אשדוד",
+
+  // קישור ניווט ב-Waze | Waze navigation link
+  wazeUrl: "https://waze.com/ul?q=%D7%A7%D7%A0%D7%99%D7%95%D7%9F%20%D7%A1%D7%99%D7%9E%D7%95%D7%9C%2C%20%D7%A6%D7%94%22%D7%9C%204%2C%20%D7%90%D7%A9%D7%93%D7%95%D7%93&navigate=yes",
 
   // טלפון לתצוגה + מספר לחיוג | Phone as displayed + dial number (digits, may start with +972)
   phone: "050-6055531",
@@ -24,14 +27,12 @@ window.SITE_CONFIG = {
 
   // שעות פתיחה | Opening hours (day label, hours) – edit / add / remove rows
   hours: [
-    ["ראשון – חמישי", "XX:XX – XX:XX"],
-    ["שישי וערבי חג", "XX:XX – XX:XX"],
-    ["שבת", "סגור"]
+    ["ראשון – חמישי", "\u202A10:00 – 19:00\u202C"]
   ],
-  hoursNote: "שעות פתיחה יעודכנו בקרוב",
+  hoursNote: "",
 
   // מפה | Google Maps embed URL (Google Maps → Share → Embed a map → copy the src="..." value)
-  mapEmbedUrl: "",
+  mapEmbedUrl: "https://www.google.com/maps?q=%D7%A7%D7%A0%D7%99%D7%95%D7%9F%20%D7%A1%D7%99%D7%9E%D7%95%D7%9C%2C%20%D7%A6%D7%94%22%D7%9C%204%2C%20%D7%90%D7%A9%D7%93%D7%95%D7%93&hl=he&z=17&output=embed",
 
   // רשתות חברתיות | Social links (leave "" to hide)
   instagram: "",
