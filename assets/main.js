@@ -77,6 +77,34 @@
   var onScroll = function () { header.classList.toggle("scrolled", window.scrollY > 10); };
   window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
 
+
+  // ---- Clinic: autoplay muted tour while visible + photo lightbox
+  var vid = $("#clinic-video");
+  if (vid && "IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    vid.muted = true;
+    var userPaused = false;
+    vid.addEventListener("pause", function () { if (vid.dataset.auto !== "1") userPaused = true; vid.dataset.auto = ""; });
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { if (!userPaused) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); } }
+        else if (!vid.paused) { vid.dataset.auto = "1"; vid.pause(); }
+      });
+    }, { threshold: 0.5 }).observe(vid);
+  }
+  var lb = $("#lightbox");
+  if (lb && typeof lb.showModal === "function") {
+    var lbImg = $("img", lb);
+    $$(".clinic-photo").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var im = $("img", b); lbImg.src = b.getAttribute("data-full"); lbImg.alt = im.alt; lb.showModal();
+      });
+    });
+    $(".lightbox-close", lb).addEventListener("click", function () { lb.close(); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
+  } else {
+    $$(".clinic-photo").forEach(function (b) { b.addEventListener("click", function () { window.open(b.getAttribute("data-full"), "_blank"); }); });
+  }
+
   // ---- Reveal on scroll
   var items = $$(".reveal");
   if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
