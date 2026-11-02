@@ -105,6 +105,74 @@
     $$(".clinic-photo").forEach(function (b) { b.addEventListener("click", function () { window.open(b.getAttribute("data-full"), "_blank"); }); });
   }
 
+  // ---- Liat: lazy-loaded 3D greeter beside the floating WhatsApp button
+  (function () {
+    var box = $("#liat"), stage = $("#liat-stage");
+    if (!box || !stage || !/^https?:$/.test(location.protocol)) return;
+    var KEY = "liatHidden";
+    try { if (localStorage.getItem(KEY) === "1") return; } catch (e) {}
+    var conn = navigator.connection;
+    if (conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ""))) return;
+    if (!window.customElements || !window.WebGLRenderingContext) return;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var WAVE = "Liat_Wave_v1", HIPS = "Liat_HandsOnHips_v1";
+    var bubbleTimer, peekTimer, small = window.matchMedia("(max-width:560px)");
+    function bubble(ms) {
+      clearTimeout(bubbleTimer); box.classList.add("show-bubble");
+      bubbleTimer = setTimeout(function () { box.classList.remove("show-bubble"); }, ms);
+    }
+    function start() {
+      var s = document.createElement("script");
+      s.type = "module"; s.src = "assets/model-viewer.min.js";
+      s.onload = function () {
+        var MV = customElements.get("model-viewer");
+        if (MV) MV.meshoptDecoderLocation = new URL("assets/meshopt_decoder.js", location.href).href;
+        var mv = document.createElement("model-viewer");
+        mv.setAttribute("src", "assets/liat.glb");
+        mv.setAttribute("alt", "ליאת, האופטומטריסטית של טופ אופטיקה, מנופפת לשלום");
+        mv.setAttribute("camera-orbit", "-28deg 84deg 2.5m");
+        mv.setAttribute("camera-target", "0m 0.84m 0m");
+        mv.setAttribute("field-of-view", "38deg");
+        mv.setAttribute("disable-zoom", ""); mv.setAttribute("disable-pan", ""); mv.setAttribute("disable-tap", "");
+        mv.setAttribute("interaction-prompt", "none");
+        mv.setAttribute("shadow-intensity", "0.55"); mv.setAttribute("shadow-softness", "1");
+        mv.setAttribute("exposure", "1.05");
+        mv.setAttribute("tone-mapping", "neutral");
+        mv.setAttribute("animation-name", WAVE);
+        mv.setAttribute("loading", "eager");
+        mv.addEventListener("load", function () {
+          box.classList.add("is-ready");
+          if (reduce) { mv.pause(); mv.currentTime = 1.1; }
+          else { mv.play({ repetitions: 1 }); }
+          var seen = false; try { seen = sessionStorage.getItem("liatHi") === "1"; sessionStorage.setItem("liatHi", "1"); } catch (e) {}
+          if (!seen) setTimeout(function () { bubble(7000); }, 700);
+          if (small.matches) peekTimer = setTimeout(function () { box.classList.add("is-peek"); }, seen ? 4000 : 9000);
+        });
+        var next = HIPS;
+        mv.addEventListener("finished", function () {
+          if (reduce) return;
+          mv.animationName = next;
+          mv.play({ repetitions: next === HIPS ? 2 : 1 });
+          next = next === HIPS ? WAVE : HIPS;
+        });
+        mv.addEventListener("error", function () { box.hidden = true; });
+        stage.appendChild(mv);
+      };
+      s.onerror = function () { box.hidden = true; };
+      box.hidden = false;
+      document.head.appendChild(s);
+    }
+    stage.addEventListener("mouseenter", function () { bubble(3500); });
+    stage.addEventListener("focus", function () { bubble(3500); });
+    $("#liat-close").addEventListener("click", function () {
+      box.classList.remove("is-ready"); setTimeout(function () { box.hidden = true; }, 400);
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+    });
+    function idle() { (window.requestIdleCallback || function (f) { setTimeout(f, 1) })(start, { timeout: 3000 }); }
+    if (document.readyState === "complete") setTimeout(idle, 1200);
+    else window.addEventListener("load", function () { setTimeout(idle, 1200); });
+  })();
+
   // ---- Reveal on scroll
   var items = $$(".reveal");
   if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
