@@ -49,7 +49,7 @@
   // ---- Map
   var wz = $("#waze-link");
   if (wz && C.wazeUrl) { wz.href = C.wazeUrl; wz.hidden = false; }
-  if (C.mapEmbedUrl) {
+  if (C.mapEmbedUrl && $("#map-box")) {
     $("#map-box").innerHTML = '<iframe title="מפת הגעה לטופ אופטיקה" src="' + esc(C.mapEmbedUrl) + '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>';
   }
 
@@ -146,7 +146,7 @@
           else { mv.play({ repetitions: 1 }); }
           var seen = false; try { seen = sessionStorage.getItem("liatHi") === "1"; sessionStorage.setItem("liatHi", "1"); } catch (e) {}
           if (!seen) setTimeout(function () { bubble(7000); }, 700);
-          if (small.matches) peekTimer = setTimeout(function () { box.classList.add("is-peek"); }, seen ? 4000 : 9000);
+          // peek removed: keep Liat fully visible on phones
         });
         var next = HIPS;
         mv.addEventListener("finished", function () {
