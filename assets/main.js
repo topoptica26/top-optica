@@ -109,10 +109,10 @@
   (function () {
     var box = $("#liat"), stage = $("#liat-stage");
     if (!box || !stage || !/^https?:$/.test(location.protocol)) return;
-    var KEY = "liatHidden";
-    try { if (localStorage.getItem(KEY) === "1") return; } catch (e) {}
+    var KEY = "liatHiddenSession";
+    try { if (sessionStorage.getItem(KEY) === "1") return; } catch (e) {}
     var conn = navigator.connection;
-    if (conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ""))) return;
+    if (conn && /(^|-)2g$/.test(conn.effectiveType || "")) return;
     if (!window.customElements || !window.WebGLRenderingContext) return;
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var WAVE = "Liat_Wave_v2", HIPS = "Liat_HandsOnHips_v1";
@@ -128,7 +128,7 @@
         var MV = customElements.get("model-viewer");
         if (MV) MV.meshoptDecoderLocation = new URL("assets/meshopt_decoder.js", location.href).href;
         var mv = document.createElement("model-viewer");
-        mv.setAttribute("src", "assets/liat-v2.glb");
+        mv.setAttribute("src", "assets/liat-v2.glb?v=20261104");
         mv.setAttribute("alt", "ליאת, האופטומטריסטית של טופ אופטיקה, מנופפת לשלום");
         mv.setAttribute("camera-orbit", "-28deg 84deg 2.5m");
         mv.setAttribute("camera-target", "0m 0.84m 0m");
@@ -166,7 +166,7 @@
     stage.addEventListener("focus", function () { bubble(3500); });
     $("#liat-close").addEventListener("click", function () {
       box.classList.remove("is-ready"); setTimeout(function () { box.hidden = true; }, 400);
-      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+      try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
     });
     function idle() { (window.requestIdleCallback || function (f) { setTimeout(f, 1) })(start, { timeout: 3000 }); }
     if (document.readyState === "complete") setTimeout(idle, 1200);
