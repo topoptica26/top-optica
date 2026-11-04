@@ -9,7 +9,7 @@ window.SITE_CONFIG = {
   // ===== מערכת תורים + ניהול | Booking & admin backend (Google Apps Script) =====
   // כתובת ה-Web App (…/exec) אחרי ה-Deploy – ראו backend/README-DEPLOY.md.
   // ריק = אין הזמנה אונליין; כפתורי "קביעת תור" ממשיכים לטלפון / וואטסאפ כמו היום.
-  bookingApiUrl: "",
+  bookingApiUrl: "https://script.google.com/macros/s/AKfycbyDmiMTgQlCgVj3T_SLrmHuje4lE0hxC7x9bQWal3hjNCy8tIt5Wi8UyLm32b6qoJaW/exec",
   // מצב הדגמה עם נתונים מזויפים – לצילומי מסך מקומיים בלבד. להשאיר false! (אפשר גם ?demo=1 בכתובת)
   demo: false,
   // מוצרים סטטיים (אופציונלי, אם לא משתמשים בדף הניהול). ריק + אין מוצרים בגיליון = "בקרוב" וקישור "מוצרים" מוסתר.
