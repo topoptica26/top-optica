@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>ניהול | טופ אופטיקה</title>
+  <meta name="theme-color" content="#3f1a1d">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/booking.css">
+  <link rel="stylesheet" href="assets/admin.css">
+</head>
+<body class="adm">
+  <!-- ===== LOGIN ===== -->
+  <section class="adm-login" id="login" aria-labelledby="login-title">
+    <div class="hero-deco" aria-hidden="true"></div>
+    <form class="adm-login-card" id="login-form" novalidate>
+      <span class="mark-badge" aria-hidden="true"><svg viewBox="0 0 120 60"><use href="#eye-mark"/></svg></span>
+      <p class="bk-kicker">TOP OPTICA</p>
+      <h1 id="login-title">כניסת ניהול</h1>
+      <p class="adm-muted">תורים, שעות פעילות, שירותים ומוצרים – במקום אחד.</p>
+      <div class="adm-off" id="login-off" hidden>מערכת הניהול עוד לא חוברה לשרת. אחרי ההתקנה (backend/README-DEPLOY.md) מעתיקים את כתובת ה-Web App אל <code>bookingApiUrl</code> בקובץ assets/config.js.</div>
+      <label class="bk-field"><span>סיסמה</span><input type="password" name="password" id="login-pw" autocomplete="current-password" required></label>
+      <p class="bk-err" id="login-err" role="alert" hidden></p>
+      <button class="btn btn-gold" type="submit" id="login-btn">כניסה</button>
+      <a class="adm-back" href="index.html">← חזרה לאתר</a>
+    </form>
+  </section>
+
+  <!-- ===== APP ===== -->
+  <div class="adm-app" id="app" hidden>
+    <header class="adm-top">
+      <div class="container adm-top-in">
+        <a class="brand" href="index.html" aria-label="לאתר טופ אופטיקה">
+          <svg class="brand-mark" viewBox="0 0 120 60" aria-hidden="true"><use href="#eye-mark"/></svg>
+          <span class="brand-text"><span class="brand-name">TOP OPTICA</span><span class="brand-sub">ניהול הקליניקה</span></span>
+        </a>
+        <div class="adm-top-a">
+          <span class="adm-hello">שלום, ליאת 👋</span>
+          <a class="adm-link" href="index.html" target="_blank" rel="noopener">לאתר</a>
+          <button type="button" class="adm-link" id="logout">יציאה</button>
+        </div>
+      </div>
+      <nav class="container adm-tabs" role="tablist" aria-label="אזורי ניהול">
+        <button role="tab" type="button" data-tab="bookings" aria-selected="true">תורים</button>
+        <button role="tab" type="button" data-tab="blocks" aria-selected="false">חסימת זמנים</button>
+        <button role="tab" type="button" data-tab="hours" aria-selected="false">שעות פעילות</button>
+        <button role="tab" type="button" data-tab="services" aria-selected="false">שירותים</button>
+        <button role="tab" type="button" data-tab="products" aria-selected="false">מוצרים</button>
+        <button role="tab" type="button" data-tab="settings" aria-selected="false">הגדרות</button>
+      </nav>
+    </header>
+    <main class="container adm-main" id="main">
+      <section class="adm-panel" id="tab-bookings" role="tabpanel"></section>
+      <section class="adm-panel" id="tab-blocks" role="tabpanel" hidden></section>
+      <section class="adm-panel" id="tab-hours" role="tabpanel" hidden></section>
+      <section class="adm-panel" id="tab-services" role="tabpanel" hidden></section>
+      <section class="adm-panel" id="tab-products" role="tabpanel" hidden></section>
+      <section class="adm-panel" id="tab-settings" role="tabpanel" hidden></section>
+    </main>
+  </div>
+
+  <dialog class="adm-dlg" id="dlg-book" aria-labelledby="dlg-book-t"></dialog>
+  <div class="adm-toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ===== SVG SPRITE: eye mark (recreation of the logo symbol, transparent) + icons ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="gold-line" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e27a"/><stop offset=".45" stop-color="#d4a73a"/><stop offset="1" stop-color="#a8741c"/></linearGradient>
+      <radialGradient id="gold-pupil" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#f8e58c"/><stop offset=".55" stop-color="#d9ac3f"/><stop offset="1" stop-color="#9c6a18"/></radialGradient>
+      <symbol id="eye-mark" viewBox="0 0 120 60">
+        <path class="eye-top" d="M3 33 C28 14 66 2 99 25 C72 12 36 20 3 33 Z" fill="#fff"/>
+        <path d="M23 32 C28 27 34 23 41 20 C36 25 33 28 31 32 C42 45 78 49 117 25 C86 47 40 52 23 32 Z" fill="url(#gold-line)"/>
+        <circle cx="60" cy="31" r="12" fill="url(#gold-pupil)"/>
+        <circle cx="55.5" cy="26" r="3.6" fill="#5a2a2c"/>
+        <circle cx="65" cy="37.5" r="1.4" fill="#5a2a2c"/>
+      </symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M9 14.5l2 2 4-4" stroke-linejoin="round"/></g></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.5l8 5 8-5V6H4zm16 2.8-8 5-8-5V18h16V8.8z"/></symbol>
+      <symbol id="i-award" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM8.2 13.9 7 22l5-3 5 3-1.2-8.1"/></symbol>
+      <symbol id="i-scan" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M2.5 12S6 6.5 12 6.5 21.5 12 21.5 12 18 17.5 12 17.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M12 20.5S3 15 3 8.8A4.8 4.8 0 0 1 12 6.4a4.8 4.8 0 0 1 9 2.4C21 15 12 20.5 12 20.5z"/></symbol>
+      <symbol id="i-glasses" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="6.5" cy="14" r="3.8"/><circle cx="17.5" cy="14" r="3.8"/><path d="M10.3 13.4a2.2 2.2 0 0 1 3.4 0M2.7 13.5 4.5 7M21.3 13.5 19.5 7"/></g></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></g></symbol>
+      <symbol id="i-lens" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13c0-4.4 4-8 9-8s9 3.6 9 8"/><path d="M5.5 13.5c1.6 2.5 4 3.5 6.5 3.5s4.9-1 6.5-3.5" stroke-dasharray="2 2.2"/></g></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 10h20M4 10l1 5.2a3 3 0 0 0 3 2.3h.4a3 3 0 0 0 2.9-2.2L12 12.5l.7 2.8a3 3 0 0 0 2.9 2.2h.4a3 3 0 0 0 3-2.3L20 10"/><path d="M12 3v2.5M6.5 4.8 7.6 6.8M17.5 4.8l-1.1 2"/></g></symbol>
+      <symbol id="i-child" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="5"/><circle cx="10" cy="7.5" r=".6" fill="currentColor"/><circle cx="14" cy="7.5" r=".6" fill="currentColor"/><path d="M10 10.2c1.2.9 2.8.9 4 0M6 21c.8-3.4 3.2-5 6-5s5.2 1.6 6 5"/></g></symbol>
+      <symbol id="i-multi" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3c5 0 9 4 9 9s-4 9-9 9-9-4-9-9 4-9 9-9z"/><path d="M4.5 9.5h15M3.6 14.5h16.8" stroke-dasharray="1.5 2"/></g></symbol>
+      <symbol id="i-pressure" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3.5 17a9 9 0 1 1 17 0"/><path d="M12 16.5 15.8 9.8"/><circle cx="12" cy="16.5" r="1.4" fill="currentColor"/><path d="M6.2 11.2l1 .6M12 6.6v1.2M17.8 11.2l-1 .6"/></g></symbol>
+      <symbol id="i-topo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><ellipse cx="12.4" cy="11.6" rx="6" ry="5.2"/><ellipse cx="12.8" cy="11.2" rx="3" ry="2.6"/><circle cx="13" cy="11" r=".9" fill="currentColor"/></g></symbol>
+    </defs>
+  </svg>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/api.js"></script>
+  <script src="assets/admin.js"></script>
+</body>
+</html>
